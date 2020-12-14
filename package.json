@@ -4,32 +4,56 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "build": "preact build",
+    "build": "preact build --no-sw",
+    "analyze": "preact build --no-sw --analyze",
     "serve": "sirv build --port 8080 --cors --single",
     "dev": "preact watch --port 3000",
-    "lint": "eslint src",
-    "test": "jest"
+    "lint": "eslint src tailwind.config.js preact.config.js",
+    "test": "jest",
+    "format": "prettier --write \"src/**/*.js\" \"tailwind.config.js\" \"preact.config.js\""
+  },
+  "babelMacros": {
+    "twin": {
+      "preset": "goober"
+    }
   },
   "eslintConfig": {
-    "extends": "preact",
+    "plugins": [
+      "prettier"
+    ],
+    "extends": [
+      "prettier",
+      "eslint:recommended",
+      "preact"
+    ],
     "ignorePatterns": [
       "build/"
-    ]
+    ],
+    "rules": {
+      "prettier/prettier": "warn"
+    }
   },
   "devDependencies": {
-    "enzyme": "^3.10.0",
-    "enzyme-adapter-preact-pure": "^2.0.0",
+    "babel-plugin-transform-goober": "^1.2.0",
     "eslint": "^6.0.1",
     "eslint-config-preact": "^1.1.0",
+    "eslint-config-prettier": "^7.0.0",
+    "eslint-plugin-prettier": "^3.3.0",
     "jest": "^24.9.0",
     "jest-preset-preact": "^1.0.0",
     "preact-cli": "^3.0.0",
+    "prettier": "^2.2.1",
     "sirv-cli": "1.0.3"
   },
   "dependencies": {
+    "@babel/core": "^7.12.10",
+    "babel-plugin-macros": "^3.0.0",
+    "goober": "^2.0.18",
     "preact": "^10.3.2",
     "preact-render-to-string": "^5.1.4",
-    "preact-router": "^3.2.1"
+    "preact-router": "^3.2.1",
+    "tailwindcss": "^2.0.2",
+    "twin.macro": "^2.0.7"
   },
   "jest": {
     "preset": "jest-preset-preact",

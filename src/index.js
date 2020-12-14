@@ -1,4 +1,7 @@
-import './style';
-import App from './components/app';
+import { h } from 'preact'
+import App from 'containers/App'
 
-export default App;
+import { setup } from 'goober'
+setup(h)
+
+export default App
