@@ -4,13 +4,14 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "build": "preact build --no-sw",
+    "prebuild": "rm -Rf build/*",
+    "build": "NODE_ENV=production preact build --no-sw --no-esm --prerenderUrls ./prerender-urls.js",
     "analyze": "preact build --no-sw --analyze",
     "serve": "sirv build --port 8080 --cors --single",
-    "dev": "preact watch --port 3000",
-    "lint": "eslint src tailwind.config.js preact.config.js",
+    "dev": "preact watch --port 3000 --prerenderUrls ./prerender-urls.js",
+    "lint": "eslint src tailwind.config.js preact.config.js prerender-urls.js",
     "test": "jest",
-    "format": "prettier --write \"src/**/*.js\" \"tailwind.config.js\" \"preact.config.js\""
+    "format": "prettier --write \"src/**/*.js\" \"tailwind.config.js\" \"preact.config.js\" \"prerender-urls.js\""
   },
   "babelMacros": {
     "twin": {
@@ -35,22 +36,25 @@
   },
   "devDependencies": {
     "babel-plugin-transform-goober": "^1.2.0",
-    "eslint": "^6.0.1",
-    "eslint-config-preact": "^1.1.0",
-    "eslint-config-prettier": "^7.0.0",
+    "eslint": "^7.17.0",
+    "eslint-config-preact": "^1.1.3",
+    "eslint-config-prettier": "^7.1.0",
     "eslint-plugin-prettier": "^3.3.0",
-    "jest": "^24.9.0",
-    "jest-preset-preact": "^1.0.0",
-    "preact-cli": "^3.0.0",
+    "jest": "^26.6.3",
+    "jest-preset-preact": "^4.0.2",
+    "preact-cli": "^3.0.5",
+    "preact-cli-goober-ssr": "^1.0.1",
     "prettier": "^2.2.1",
-    "sirv-cli": "1.0.3"
+    "sirv-cli": "1.0.10"
   },
   "dependencies": {
     "@babel/core": "^7.12.10",
-    "babel-plugin-macros": "^3.0.0",
-    "goober": "^2.0.18",
-    "preact": "^10.3.2",
-    "preact-render-to-string": "^5.1.4",
+    "@fortawesome/fontawesome-free-solid": "^5.0.13",
+    "@preact/prerender-data-provider": "^3.0.1",
+    "babel-plugin-macros": "^3.0.1",
+    "goober": "^2.0.19-next.1",
+    "preact": "^10.5.9",
+    "preact-render-to-string": "^5.1.12",
     "preact-router": "^3.2.1",
     "tailwindcss": "^2.0.2",
     "twin.macro": "^2.0.7"
