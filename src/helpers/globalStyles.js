@@ -17,6 +17,7 @@ const GlobalStyles = `
     font-family: inherit;
     line-height: inherit;
     background-color: ${theme`colors.dark`};
+    font-weight: 300;
   }
   button,
   input,

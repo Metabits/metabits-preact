@@ -8,7 +8,7 @@ import rocketImg from 'images/svg/rocket.svg'
 import Image from 'atoms/Image'
 
 const Container = styled('div')([
-  tw`bg-gradient-to-b from-dark to-theme-blue pt-6 md:pt-10 flex justify-center`,
+  tw`bg-gradient-to-b from-dark to-theme-blue pt-3 sm:pt-6 md:pt-10 flex justify-center`,
   {
     position: 'relative',
     'padding-bottom': '1rem',
@@ -41,7 +41,7 @@ export const Rills = styled('div')([
 const Rocket = () => {
   return (
     <Container>
-      <div className={css(tw`w-8/12 md:w-1/3`)}>
+      <div className={css(tw`w-8/12 sm:w-8/12 md:w-1/3`)}>
         <Image src={rocketImg} height="231" width="185" alt="rakett" />
       </div>
       <Bubbles />

@@ -10,12 +10,10 @@ const GlobalStyles = createGlobalStyles`${globalStyles}`
 
 const Container = styled.div([
   tw`text-white`,
-  tw`flex flex-col h-screen w-full`,
 ])
 
 const Content = styled.main([
   {
-    flex: '1',
     'min-height': '90vh',
   },
 ])

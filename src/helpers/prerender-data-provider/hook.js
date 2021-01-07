@@ -3,6 +3,18 @@ import { normalizeUrl, getPrerenderdata, checkProps } from './utils'
 import { PrerenderDataContext } from './context'
 import { PRERENDER_DATA_FILE_NAME } from './constants'
 
+function sleep(ms = 100) {
+  return new Promise((resolve) => setTimeout(resolve, ms))
+}
+
+async function fetcher(url) {
+  const response = await fetch(
+    `${normalizeUrl(url)}${PRERENDER_DATA_FILE_NAME}`
+  )
+  const json = await response.json()
+  return json
+}
+
 function usePrerenderData(props, doAutomaticFetch = true) {
   let value
   const [state, setState] = useState({
@@ -20,10 +32,10 @@ function usePrerenderData(props, doAutomaticFetch = true) {
       error: false,
     })
     try {
-      const response = await fetch(
-        `${normalizeUrl(props.url)}${PRERENDER_DATA_FILE_NAME}`
-      )
-      const json = await response.json()
+      const [json] = await Promise.all([
+        fetcher(props.url),
+        sleep(300)
+      ])
       setState({
         value: json,
         isLoading: false,
