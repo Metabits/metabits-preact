@@ -32,10 +32,7 @@ function usePrerenderData(props, doAutomaticFetch = true) {
       error: false,
     })
     try {
-      const [json] = await Promise.all([
-        fetcher(props.url),
-        sleep(300)
-      ])
+      const [json] = await Promise.all([fetcher(props.url), sleep(300)])
       setState({
         value: json,
         isLoading: false,

@@ -12,7 +12,7 @@ const VariantsClassName = ({
   rounded = true,
 }) =>
   [
-    rounded ? css(tw`rounded-full`) : css(tw`rounded-full`),
+    rounded ? css(tw`rounded-full`) : css(tw`rounded`),
     variant === 'primary' &&
       css(
         tw`bg-primary border-primary hocus:(bg-primary-active border-primary-active)`

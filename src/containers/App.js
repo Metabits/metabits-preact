@@ -7,7 +7,7 @@ import Layout from 'components/Layout'
 
 // Code-splitting is automated for `routes` directory
 import Home from 'routes/Home/Home'
-import Page from 'routes/Page'
+import Page from 'routes/Page/Page'
 import NotFound from 'routes/NotFound'
 
 const App = (props) => {

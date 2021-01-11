@@ -1,8 +1,8 @@
 import { h } from 'preact'
 import { Link } from 'preact-router/match'
-import tw, { styled, theme, css } from 'twin.macro'
+import tw, { styled, css } from 'twin.macro'
 import { icon as faBars } from '@fortawesome/fontawesome-free-solid/faBars'
-import { useState, useEffect } from 'preact/hooks'
+import { useState, useEffect, useRef } from 'preact/hooks'
 
 import Logo from 'atoms/Logo'
 import Wrapper from 'atoms/Wrapper'
@@ -12,32 +12,33 @@ import Sidebar from 'components/Sidebar'
 
 const Container = styled.header([tw`py-4`])
 const HeaderInner = styled.header([tw`flex items-center justify-between`])
-const NavItem = styled(Link)([
-  tw`inline-block text-white text-lg py-3 px-4 mr-4 font-light`,
+const SidebarNav = styled.nav([
   {
-    '&.active': {
-      color: theme`colors.primary`,
-    },
+    a: tw`block text-white text-lg py-3 mr-2 font-light mb-1 text-xl text-center`,
+    'a.active': tw`text-primary`,
   },
 ])
-const NavItemSidebar = styled(Link)([
-  tw`block text-white text-lg py-3  mr-2 font-light mb-1 text-xl text-center`,
+const DesktopNav = styled.nav([
+  tw`hidden lg:block`,
   {
-    '&.active': {
-      color: theme`colors.primary`,
-    },
+    a: tw`inline-block text-white text-lg py-3 px-4 mr-4 font-light hocus:(text-primary underline)`,
+    'a.active': tw`text-primary`,
   },
 ])
-const DesktopNav = styled.nav([tw`hidden lg:block`])
 
 const Header = ({ menu, url }) => {
   const primaryMenu = menu.filter(({ isButton }) => !isButton)
   const secondaryMenu = menu.filter(({ isButton }) => isButton)
   const [visible, setVisible] = useState(false)
   const onToggle = () => setVisible(!visible)
+  const refUrl = useRef(url)
   useEffect(() => {
-    setVisible(false)
-  }, [url, setVisible])
+    if (url !== refUrl.current) {
+      window.scrollTo(0, 0)
+      refUrl.current = url
+      setVisible(false)
+    }
+  }, [url, setVisible, refUrl])
   return (
     <Container>
       <Wrapper>
@@ -45,9 +46,9 @@ const Header = ({ menu, url }) => {
           <Logo />
           <DesktopNav>
             {primaryMenu.map(({ menuName, url }, i) => (
-              <NavItem key={i} href={url} activeClassName="active">
+              <Link key={i} href={url} activeClassName="active">
                 {menuName}
-              </NavItem>
+              </Link>
             ))}
             {secondaryMenu.map(({ menuName, url }, i) => (
               <Button key={i} as={Link} href={url} rounded={false} size="md">
@@ -68,11 +69,13 @@ const Header = ({ menu, url }) => {
         onClose={onToggle}
         className={css(tw`lg:hidden`)}
       >
-        {menu.map(({ menuName, url }, i) => (
-          <NavItemSidebar key={i} href={url} activeClassName="active">
-            {menuName}
-          </NavItemSidebar>
-        ))}
+        <SidebarNav>
+          {menu.map(({ menuName, url }, i) => (
+            <Link key={i} href={url} activeClassName="active">
+              {menuName}
+            </Link>
+          ))}
+        </SidebarNav>
       </Sidebar>
     </Container>
   )

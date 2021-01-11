@@ -15,7 +15,7 @@ const Container = styled('div')([
   },
 ])
 
-const Image = ({ height, width, src, alt = '', className = '' }) => {
+const Image = ({ height, width, className = '', ...props }) => {
   const ratio = (width / height) * 100
   return (
     <Container
@@ -23,7 +23,7 @@ const Image = ({ height, width, src, alt = '', className = '' }) => {
         'padding-top': `${ratio.toFixed(2)}%`,
       })}`}
     >
-      <img height={height} width={width} src={src} alt={alt} />
+      <img height={height} width={width} {...props} />
     </Container>
   )
 }

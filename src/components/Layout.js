@@ -4,13 +4,11 @@ import { createGlobalStyles } from 'goober/global'
 
 import globalStyles from 'helpers/globalStyles'
 import Header from 'components/Header'
-import Wrapper from 'atoms/Wrapper'
+import Footer from 'components/Footer'
 
 const GlobalStyles = createGlobalStyles`${globalStyles}`
 
-const Container = styled.div([
-  tw`text-white`,
-])
+const Container = styled.div([tw`text-white`])
 
 const Content = styled.main([
   {
@@ -18,16 +16,12 @@ const Content = styled.main([
   },
 ])
 
-const Footer = styled.footer([tw`py-4 text-sm text-center text-white`])
-
 const App = ({ children, layout: { menu }, url }) => (
   <Container>
     <GlobalStyles />
     <Header menu={menu} url={url} />
     <Content>{children}</Content>
-    <Footer>
-      <Wrapper>Footer</Wrapper>
-    </Footer>
+    <Footer menu={menu} />
   </Container>
 )
 
