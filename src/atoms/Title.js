@@ -1,13 +1,13 @@
 import { h } from 'preact'
 import tw, { styled, css } from 'twin.macro'
 
-const Container = styled('h1')([tw`mb-2 font-bold leading-tight`])
+const Container = styled('h1')([tw`mb-2 font-bold`])
 
 const VariantsClassName = ({ subTitle }) =>
   [
     subTitle
-      ? css(tw`mt-2 text-lg md:text-2xl`)
-      : css(tw`mt-0 text-2xl md:text-4xl`),
+      ? css(tw`mt-2 text-2xl md:text-2xl leading-tight`)
+      : css(tw`mt-0 text-3xl md:text-4xl leading-tight`),
   ]
     .filter(Boolean)
     .join(' ')

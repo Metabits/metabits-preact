@@ -5,7 +5,7 @@ import { Link } from 'preact-router/match'
 import Button from 'atoms/Button'
 import Title from 'atoms/Title'
 import Wrapper from 'atoms/Wrapper'
-import Image from 'atoms/Image'
+import SvgImage from 'atoms/SvgImage'
 
 import HeroImage, { Rills } from './HeroImage'
 
@@ -22,7 +22,7 @@ const Hero = ({
     <>
       <HeroImage>
         <div className={css(tw`w-8/12 sm:w-8/12 md:w-1/3`)}>
-          {imgProps && <Image {...imgProps} />}
+          {imgProps && <SvgImage {...imgProps} />}
         </div>
       </HeroImage>
       <div className={css(tw`bg-primary mb-8`)}>

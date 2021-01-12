@@ -1,29 +1,32 @@
 import { h } from 'preact'
-import { styled, css } from 'twin.macro'
+import tw, { styled, css } from 'twin.macro'
 
 const Container = styled('div')([
+  tw`w-full bg-cover`,
   {
-    position: 'relative',
-    width: '100%',
-    img: {
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      width: '100%',
-      height: '100%',
-    },
+    img: tw`block w-full w-full`,
   },
 ])
 
-const Image = ({ height, width, className = '', ...props }) => {
-  const ratio = (width / height) * 100
+const Image = ({
+  height,
+  width,
+  className = '',
+  srcSet,
+  placeholder,
+  webpSrcSet,
+  ...props
+}) => {
   return (
     <Container
       className={`${className} ${css({
-        'padding-top': `${ratio.toFixed(2)}%`,
+        'background-image': `url(${placeholder})`,
       })}`}
     >
-      <img height={height} width={width} {...props} />
+      <picture>
+        <source srcset={webpSrcSet} type="image/webp" />
+        <img height={height} width={width} srcSet={srcSet} {...props} />
+      </picture>
     </Container>
   )
 }
