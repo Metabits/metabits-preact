@@ -1,8 +1,8 @@
 import { h } from 'preact'
 import tw, { styled } from 'twin.macro'
 
-import bubbleImg from 'images/svg/bubbles.svg'
-import rillsImg from 'images/svg/rills.svg'
+import bubbleImg from 'images/bubbles.svg'
+import rillsImg from 'images/rills.svg'
 
 const Container = styled('div')([
   tw`bg-gradient-to-b from-dark to-theme-blue pt-3 pb-3 relative sm:pt-6 md:pt-10 flex justify-center`,

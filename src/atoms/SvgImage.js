@@ -16,7 +16,7 @@ const Container = styled('div')([
 ])
 
 const SvgImage = ({ height, width, className = '', ...props }) => {
-  const ratio = (width / height) * 100
+  const ratio = (height / width) * 100
   return (
     <Container
       className={`${className} ${css({

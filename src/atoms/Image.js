@@ -2,9 +2,9 @@ import { h } from 'preact'
 import tw, { styled, css } from 'twin.macro'
 
 const Container = styled('div')([
-  tw`w-full bg-cover`,
+  tw`w-full bg-cover rounded`,
   {
-    img: tw`block w-full w-full`,
+    img: tw`block w-full w-full rounded`,
   },
 ])
 

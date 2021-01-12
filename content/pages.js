@@ -6,18 +6,6 @@ const routes = {
   contact: '/kontakt-oss',
 }
 
-const content = `## Lorem ipsum dolor sit amet (h2)
-
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-### Lorem ipsum dolor sit amet (h3)
-
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-#### Lorem ipsum dolor sit amet (h4)
-
-Lorem ipsum [dolor sit amet](/), consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`
-
 const pages = [
   {
     url: routes.home,
@@ -25,7 +13,13 @@ const pages = [
     description: 'Noe kommer her',
     menuName: 'Hjem',
     hero: {
-      img: 'rocket',
+      image: {
+        src: '/assets/svg/rocket.svg',
+        width: 231,
+        height: 185,
+        alt:
+          'Rakett. Illustrasjon: vijay verma / https://vijayverma.co / The MIT License',
+      },
       title:
         'Utvikling, design, universelt utformet, ytelse, intuitiv grensesnitt, analyse',
       subTitle:
@@ -37,7 +31,13 @@ const pages = [
     },
     blocks: [
       {
-        img: 'fish',
+        image: {
+          src: '/assets/svg/fish.svg',
+          width: 184,
+          height: 128,
+          alt:
+            'En oppblåst fisk. Illustrasjon: vijay verma / https://vijayverma.co / The MIT License',
+        },
         preTitle: 'Sannheten er:',
         title:
           'De fleste nettsider er oppblåste og bygd i rammeverk som aldri lar deg nå maks ytelse',
@@ -45,7 +45,13 @@ const pages = [
         linkText: 'Les om serverless og JAMStack',
       },
       {
-        img: 'devices',
+        image: {
+          src: '/assets/svg/ux-screen.svg',
+          width: 625,
+          height: 242,
+          alt:
+            'Ux skjermer. Illustrasjon: vijay verma / https://vijayverma.co / The MIT License',
+        },
         preTitle: 'En utfordring:',
         title:
           'Hvordan lever top ytelse til et globalt publikum, uten lorem ipsum deja vu?',
@@ -59,7 +65,14 @@ const pages = [
     title: 'Utvikling av nettsider',
     menuName: 'Utvikling',
     subTitle: 'Here comes content for about page',
-    content,
+    cover: {
+      src: '/assets/svg/app-development.svg',
+      width: 521,
+      height: 236,
+      alt:
+        'Utvikling. Illustrasjon: vijay verma / https://vijayverma.co / The MIT License',
+    },
+    content: `Noe mer kommer her`,
   },
   {
     url: routes.work,
@@ -100,7 +113,7 @@ const pages = [
       {
         title: 'Gyldendal responsivt redesign',
         content:
-          'Gyldendal er et av norges ledende forlag innen skjønn, fag og undervisningslitteratur. Sidene deres ble skrevet om med komponent-biblioteket Bootstrap som base for en mest mulig effektiv omskriving til responsive nettsider. [Se nettsiden her](https://www.gyldendal.no)',
+          'Gyldendal er et av norges ledende forlag innen skjønn, fag og undervisningslitteratur. Sidene deres ble skrevet om med komponent-biblioteket Bootstrap som base for en mest mulig effektiv omskriving til responsive nettsider.',
         image: 'content/images/portfolio/gyldendal-nettside.jpg',
       },
       {
@@ -108,6 +121,12 @@ const pages = [
         content:
           'FjeldÅsheim & Nilsen AS er et ingeniør og tømrer-firmat i Oslo. Sidene deres er en fullstack wordpress side. [Se nettsiden her](https://www.fjeldaasheim.no)',
         image: 'content/images/portfolio/fjeldaasheim-nettside.jpg',
+      },
+      {
+        title: 'Nettside for Norges Bridge Forbund',
+        content:
+          'Design og utvikling av nettside for Norges Bridge Forbund. [Se nettsiden her](https://www.bridge.no)',
+        image: 'content/images/portfolio/bridge-nettside.jpg',
       },
     ],
   },
@@ -118,6 +137,13 @@ const pages = [
       'Våre kompetanseområder innen utvikling og design av nettløsninger',
     menuName: 'Teknologier',
     description: 'Hvilke ',
+    cover: {
+      src: '/assets/svg/tools.svg',
+      width: 662,
+      height: 399,
+      alt:
+        'Verktøy. Illustrasjon: vijay verma / https://vijayverma.co / The MIT License',
+    },
     content: `Generelt jobber vi med et riktig og allsidig utvalg innen mange forskjellige områder rundt leveranse av nettsider og applikasjoner.
 
 Spesielt anbefaler vi teknologi og løsninger innen åpen kildekode som programvaremodel, fordi dette generelt fører til en høyere kvalitet på koden, siden alle kan være med å bidra med videreutvikling og feilretting.
@@ -147,6 +173,13 @@ Wordpress har også en REST api som gjør at den kan integreres modern en modern
     menuName: 'Kontakt oss',
     description:
       'Metabits AS ble stiftet i 2011 har har siden den gang jobbet både som underleverandør innen utvikling av nettsider og applikasjoner og som total-leverandør av fullstendige prosjekter.',
+    cover: {
+      src: '/assets/svg/bike.svg',
+      width: 1100,
+      height: 611,
+      alt:
+        'Kul sykkel. Illustrasjon: vijay verma / https://vijayverma.co / The MIT License',
+    },
     isButton: true,
     content: `Metabits AS ble stiftet i 2011 har har siden den gang jobbet både som underleverandør innen utvikling av nettsider og applikasjoner og som total-leverandør av fullstendige prosjekter med rådgiving, design av nettsider og utvikling av frontend og backend.
 
