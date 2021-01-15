@@ -1,4 +1,4 @@
-const { parse, resolve } = require('path')
+const { parse } = require('path')
 const { stat, readFile, writeFile } = require('fs').promises
 const crypto = require('crypto')
 const mkdirp = require('mkdirp')
