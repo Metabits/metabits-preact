@@ -25,7 +25,10 @@ async function run() {
     publicPath,
   })
   await handler.clear()
-  const data = await optimizePages(pages, handler)
+  const data = await handler.optimizeImagePath(
+    'content/images/pages/app-development.svg'
+  )
+  //const data = await optimizePages(pages, handler)
   console.log(JSON.stringify(data, null, 2))
 }
 

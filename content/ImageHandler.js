@@ -1,10 +1,16 @@
-const { parse } = require('path')
-const { stat } = require('fs').promises
+const { parse, resolve } = require('path')
+const { stat, readFile, writeFile } = require('fs').promises
 const crypto = require('crypto')
 const mkdirp = require('mkdirp')
 const sharp = require('sharp')
 const util = require('util')
 const rimraf = util.promisify(require('rimraf'))
+const SVGO = require('svgo')
+const { promisify } = require('util')
+
+const svgo = new SVGO()
+
+promisify(svgo.optimize)
 
 class ImageHandler {
   constructor({
@@ -62,33 +68,63 @@ class ImageHandler {
       mime: this.mimes[ext],
     }
   }
+  findFormat(ext) {
+    if (ext === 'png' || ext === 'svg') {
+      return 'png'
+    }
+    return 'jpg'
+  }
+  async optimizeImageSvg(file) {
+    const src = `${file.digest}.${file.ext}`
+    const readIn = await readFile(file.path, 'utf-8')
+    const { data } = await svgo.optimize(readIn)
+    const savePath = `${this.output}/${src}`
+    await writeFile(savePath, data, 'utf-8')
+    return [{ src }]
+  }
   async optimizeImagePath(path) {
     const file = await this.getFile(path)
     const image = sharp(file.path)
-    const placeholderData = await this.writeFile({
-      image,
-      width: this.placeholderSize,
-      toBuffer: true,
-    })
-    const jpgs = await this.transformImage({
-      image,
-      file,
-      ext: 'jpg',
-    })
-    const webp = await this.transformImage({
-      image,
-      file,
-      ext: 'webp',
-    })
-    const { src, height, width } = jpgs[0]
-    const data = {
+    const ext = this.findFormat(file.ext)
+    const mime = this.mimes[ext]
+    const { width, height } = await image.metadata()
+    let jpgs,
+      webp,
+      placeholderData = null
+    const isVector = file.ext === 'svg'
+    if (isVector) {
+      jpgs = await this.optimizeImageSvg(file)
+    } else {
+      placeholderData = await this.writeFile({
+        image,
+        width: this.placeholderSize,
+        toBuffer: true,
+        ext,
+      })
+      jpgs = await this.transformImage({
+        image,
+        file,
+        ext,
+      })
+      webp = await this.transformImage({
+        image,
+        file,
+        ext: 'webp',
+      })
+    }
+    const { src } = jpgs[0]
+    let data = {
       src: this.getPublicPath(src),
       height,
       width,
       name: file.name,
-      srcSet: this.createSrcSet(jpgs),
-      webpSrcSet: this.createSrcSet(webp),
-      placeholder: this.createPlaceholder(placeholderData, file.mime),
+      placeholder: placeholderData
+        ? this.createPlaceholder(placeholderData, mime)
+        : null,
+    }
+    if (!isVector) {
+      data.srcSet = this.createSrcSet(jpgs)
+      data.webpSrcSet = this.createSrcSet(webp)
     }
     return data
   }
@@ -96,8 +132,10 @@ class ImageHandler {
     const metadata = await image.metadata()
     const promises = []
     const widthsToGenerate = new Set()
+    const isVector = file.ext === 'svg'
     this.sizes.forEach((size) => {
-      const width = Math.min(metadata.width, size)
+      const usedWith = isVector ? size : metadata.width
+      const width = Math.min(usedWith, size)
       // Only resize images if they aren't an exact copy of one already being resized...
       if (!widthsToGenerate.has(width)) {
         widthsToGenerate.add(width)
@@ -123,6 +161,14 @@ class ImageHandler {
           quality: this.quality,
           progressive: true,
         })
+      }
+      if (ext === 'png' || ext === 'svg') {
+        resized = image
+          .clone()
+          .png({
+            quality: this.quality,
+          })
+          .resize(width, null)
       }
       if (ext === 'webp') {
         resized = resized.webp({

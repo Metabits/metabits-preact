@@ -16,6 +16,14 @@ async function optimizePages(pages, handler) {
         item.image = await handler.optimizeImagePath(item.image)
       }
     }
+    if (page.hero && page.hero.image) {
+      page.hero.image = await handler.optimizeImagePath(page.hero.image)
+    }
+    if (page.blocks) {
+      for await (const item of page.blocks) {
+        item.image = await handler.optimizeImagePath(item.image)
+      }
+    }
   }
   return pages
 }

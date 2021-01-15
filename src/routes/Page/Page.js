@@ -7,13 +7,12 @@ import Title from 'atoms/Title'
 import Wrapper from 'atoms/Wrapper'
 import Content from 'atoms/Content'
 import Image from 'atoms/Image'
-import SvgImage from 'atoms/SvgImage'
 
 const Page = (props) => {
   const [data, isLoading] = usePrerenderData(props)
   return (
     <PageWrapper isLoading={isLoading} data={data}>
-      {({ seo, content, subTitle, contentItems, cover }) => (
+      {({ seo, content, subTitle, contentItems, imageAlt, image }) => (
         <Wrapper>
           <hgroup className={css(tw`max-w-xl mx-auto mb-2 text-center`)}>
             <Title className={css(tw`text-primary mb-1!`)}>{seo.title}</Title>
@@ -26,9 +25,9 @@ const Page = (props) => {
               </Title>
             )}
           </hgroup>
-          {cover && (
+          {image && (
             <div className={css(tw`max-w-3xl mx-auto mb-4`)}>
-              <SvgImage {...cover} loading="lazy" />
+              <Image {...image} alt={imageAlt} loading="lazy" />
             </div>
           )}
           {content && (

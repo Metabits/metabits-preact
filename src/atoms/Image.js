@@ -15,17 +15,24 @@ const Image = ({
   srcSet,
   placeholder,
   webpSrcSet,
+  loading,
   ...props
 }) => {
   return (
     <Container
       className={`${className} ${css({
-        'background-image': `url(${placeholder})`,
+        'background-image': loading === 'lazy' ? `url(${placeholder})` : null,
       })}`}
     >
       <picture>
-        <source srcset={webpSrcSet} type="image/webp" />
-        <img height={height} width={width} srcSet={srcSet} {...props} />
+        {webpSrcSet && <source srcset={webpSrcSet} type="image/webp" />}
+        <img
+          height={height}
+          width={width}
+          srcSet={srcSet}
+          loading={loading}
+          {...props}
+        />
       </picture>
     </Container>
   )

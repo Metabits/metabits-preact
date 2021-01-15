@@ -49,7 +49,8 @@
     "responsive-loader": "^2.3.0",
     "rimraf": "^3.0.2",
     "sharp": "^0.27.0",
-    "sirv-cli": "1.0.10"
+    "sirv-cli": "1.0.10",
+    "svgo": "^1.3.2"
   },
   "dependencies": {
     "@babel/core": "^7.12.10",

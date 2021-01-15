@@ -7,10 +7,13 @@ import Wrapper from 'atoms/Wrapper'
 import Hero from './Hero'
 import Card from './Card'
 
-const HeroHelper = ({ image, ...props }) => <Hero imgProps={image} {...props} />
+const HeroHelper = ({ image, imageAlt, ...props }) => (
+  <Hero imgProps={{ ...image, alt: imageAlt }} {...props} />
+)
 
 const Home = (props) => {
   const [data, isLoading] = usePrerenderData(props)
+  console.log('data', data)
   return (
     <PageWrapper isLoading={isLoading} data={data}>
       {({ hero, blocks }) => (
@@ -18,8 +21,14 @@ const Home = (props) => {
           {hero && <HeroHelper {...hero} />}
           <Wrapper>
             {blocks &&
-              blocks.map(({ image, ...blockProps }, i) => {
-                return <Card key={i} imgProps={image} {...blockProps} />
+              blocks.map(({ image, imageAlt, ...blockProps }, i) => {
+                return (
+                  <Card
+                    key={i}
+                    imgProps={{ ...image, alt: imageAlt }}
+                    {...blockProps}
+                  />
+                )
               })}
           </Wrapper>
         </>
