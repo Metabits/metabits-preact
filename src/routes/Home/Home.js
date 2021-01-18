@@ -13,7 +13,6 @@ const HeroHelper = ({ image, imageAlt, ...props }) => (
 
 const Home = (props) => {
   const [data, isLoading] = usePrerenderData(props)
-  console.log('data', data)
   return (
     <PageWrapper isLoading={isLoading} data={data}>
       {({ hero, blocks }) => (

@@ -3,7 +3,7 @@ import App from 'containers/App'
 
 import { setup } from 'goober'
 
-const cssProps = ['size', 'variant', 'rounded', 'icon']
+const cssProps = ['size', 'variant', 'rounded', 'icon', 'as']
 
 const forwardProps = (props) => {
   for (let prop in props) {

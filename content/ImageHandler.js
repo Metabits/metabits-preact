@@ -91,16 +91,16 @@ class ImageHandler {
     let jpgs,
       webp,
       placeholderData = null
+    placeholderData = await this.writeFile({
+      image,
+      width: this.placeholderSize,
+      toBuffer: true,
+      ext,
+    })
     const isVector = file.ext === 'svg'
     if (isVector) {
       jpgs = await this.optimizeImageSvg(file)
     } else {
-      placeholderData = await this.writeFile({
-        image,
-        width: this.placeholderSize,
-        toBuffer: true,
-        ext,
-      })
       jpgs = await this.transformImage({
         image,
         file,

@@ -22,7 +22,7 @@ const Hero = ({
     <>
       <HeroImage>
         <div className={css(tw`w-8/12 sm:w-8/12 md:w-1/3`)}>
-          {imgProps && <Image {...imgProps} />}
+          {imgProps && <Image {...imgProps} loading="eager" />}
         </div>
       </HeroImage>
       <div className={css(tw`bg-primary mb-8`)}>

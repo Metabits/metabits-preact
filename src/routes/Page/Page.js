@@ -27,7 +27,7 @@ const Page = (props) => {
           </hgroup>
           {image && (
             <div className={css(tw`max-w-3xl mx-auto mb-4`)}>
-              <Image {...image} alt={imageAlt} loading="lazy" />
+              <Image {...image} alt={imageAlt} loading="eager" />
             </div>
           )}
           {content && (
@@ -43,8 +43,8 @@ const Page = (props) => {
                   <Image
                     {...image}
                     alt={title}
-                    loading="lazy"
-                    sizes="(min-width: 768px) 48vw, 40vw"
+                    loading={i < 2 ? 'eager' : 'lazy'}
+                    sizes="(min-width: 768px) 48vw, 70vw"
                   />
                   <Title subTitle>{title}</Title>
                   <Content content={content} />
