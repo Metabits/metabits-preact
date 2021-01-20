@@ -7,12 +7,13 @@
       <meta name="thumbnail" content="<%= htmlWebpackPlugin.options.seo.image %>">
     <% } %>
     <% if(htmlWebpackPlugin.options.seo && 'description' in htmlWebpackPlugin.options.seo) {%>
-      <meta property="description" content="<%= htmlWebpackPlugin.options.seo.description %>" />
+      <meta name="description" content="<%= htmlWebpackPlugin.options.seo.description %>" />
     <% } %>
 		<meta name="viewport" content="width=device-width,initial-scale=1">
 		<meta name="mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+    <link rel="icon" href="/assets/icons/favicon-32.png" sizes="32x32">
 		<% preact.headEnd %>
 	</head>
 	<body>

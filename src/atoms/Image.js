@@ -7,7 +7,7 @@ import useInView from 'hooks/use-inview'
 const Container = styled('div')([
   tw`w-full bg-cover rounded relative`,
   {
-    img: tw`w-full h-full absolute top-0 left-0 bg-cover rounded`,
+    'img, .placeholder': tw`w-full h-full absolute top-0 left-0 bg-cover rounded`,
   },
 ])
 
@@ -17,7 +17,7 @@ const containerStylesAsync = css({
     'will-change': 'opacity',
   },
   '& .placeholder': {
-    filter: 'blur(10px)',
+    filter: 'blur(2px)',
     transition: 'opacity 0.4s ease, filter 0.5s ease',
     opacity: '1',
     'transition-delay': '0.3s',
@@ -72,12 +72,11 @@ const Image = ({
         })}
       />
       {isLazy && placeholder && (
-        <img
-          className="placeholder blur"
-          src={placeholder}
-          alt={props.alt}
-          height={height}
-          width={width}
+        <div
+          className="placeholder"
+          style={{
+            'background-image': `url(${placeholder})`
+          }}
         />
       )}
       {show && (

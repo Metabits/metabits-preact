@@ -8,7 +8,7 @@ import Button from 'atoms/Button'
 
 const Container = styled('div')([tw`mb-10 text-center`])
 
-const Card = ({ title, imgProps, link, linkText }) => {
+const Card = ({ title, preTitle, imgProps, link, linkText }) => {
   return (
     <Container>
       {imgProps && (
@@ -16,6 +16,7 @@ const Card = ({ title, imgProps, link, linkText }) => {
           <Image {...imgProps} loading="lazy" />
         </div>
       )}
+      {preTitle && <p className={css(tw`mx-auto mb-1 text-xl`)}>{preTitle}</p>}
       <Title as="h2" className={css(tw`max-w-xl mx-auto mb-6`)}>
         {title}
       </Title>

@@ -25,7 +25,7 @@ const Hero = ({
           {imgProps && <Image {...imgProps} loading="eager" />}
         </div>
       </HeroImage>
-      <div className={css(tw`bg-primary mb-8`)}>
+      <div className={css(tw`bg-primary text-dark mb-8`)}>
         <Wrapper className={css(tw`sm:pt-6`)}>
           <Title as="h2" className={css(tw`text-center max-w-xl mx-auto`)}>
             {title}

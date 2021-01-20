@@ -2,6 +2,8 @@ import { h } from 'preact'
 import tw, { styled, css } from 'twin.macro'
 import { keyframes } from 'goober'
 
+import useAriaModal from 'hooks/use-aria-modal'
+
 const sharedCss = css`
   position: fixed;
   top: 0;
@@ -49,16 +51,22 @@ const animation = css`
   animation: ${flyIn} 0.25s ease-in;
 `
 
-const Sidabar = ({ children, visible, className = '', onClose }) => {
-  if (!visible) {
+const Sidebar = (props) => {
+  if (!props.visible) {
     return null
   }
+
+  return <SidebarInner {...props} />
+}
+
+const SidebarInner = ({ visible, children, className = '', onClose }) => {
+  const [ref] = useAriaModal(onClose)
   return (
-    <div className={`${sharedCss} ${className}`}>
+    <div ref={ref} className={`${sharedCss} ${className}`}>
       <div className={`${sharedCss} ${bgCss}`} onClick={onClose} />
       <Aside className={animation}>{visible && children}</Aside>
     </div>
   )
 }
 
-export default Sidabar
+export default Sidebar

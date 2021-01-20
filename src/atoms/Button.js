@@ -2,15 +2,16 @@ import tw, { styled } from 'twin.macro'
 
 const Container = styled.button(
   ({ variant = 'primary', size = 'lg', rounded = true }) => [
-    tw`px-6 py-2 focus:outline-none inline-flex items-center justify-center`,
+    tw`px-6 py-2 inline-flex items-center justify-center`,
     tw`transform transition-transform duration-75`,
-    tw`text-white font-bold shadow border-2`,
+    tw`font-bold shadow border-2`,
     rounded ? tw`rounded-full` : tw`rounded`,
     variant === 'primary' &&
-      tw`bg-primary border-primary hocus:(bg-primary-active border-primary-active)`,
+      tw`text-dark bg-primary border-primary hocus:(outline-none ring-2 ring-offset-2 ring-blue-400 ring-offset-dark)`, // hocus:(bg-primary-active)
     variant === 'info' &&
-      tw`bg-dark border-dark hocus:(bg-dark-active border-dark-active)`,
-    variant === 'border' && tw`border-white text-white hocus:(border-primary)`,
+      tw`text-white bg-dark border-dark hocus:(outline-none ring-2 ring-offset-2 ring-dark ring-offset-blue-400)`,
+    variant === 'border' &&
+      tw`text-dark border-white hocus:(outline-none ring-2 ring-offset-2 ring-dark ring-offset-blue-400)`,
     size === 'lg' && tw`text-lg`,
   ]
 )

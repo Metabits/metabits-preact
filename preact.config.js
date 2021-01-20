@@ -1,8 +1,20 @@
 const gooberPlugin = require('preact-cli-goober-ssr')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const path = require('path')
 
 export default (config, env, helpers) => {
   config.resolve.modules.push(env.src)
   gooberPlugin(config, env)
+  config.plugins.push(
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: '*',
+          context: path.resolve(__dirname, 'src/assets'),
+        },
+      ],
+    })
+  )
   if (!env.dev) {
     config.devtool = 'none'
     const { index, rule } = helpers.getRulesByMatchingFile(config, '.svg')[0]

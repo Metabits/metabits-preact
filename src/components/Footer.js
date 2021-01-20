@@ -9,7 +9,7 @@ const Container = styled('footer')([tw`py-4 text-sm text-center text-gray-400`])
 const Nav = styled.nav([
   tw`mb-2`,
   {
-    a: tw`inline-block text-gray-400 px-1 hocus:(text-white underline)`,
+    a: tw`inline-block text-gray-400 p-2 hocus:(text-white underline)`,
     'a.active': tw`text-white underline`,
   },
 ])

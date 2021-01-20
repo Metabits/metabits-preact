@@ -21,7 +21,7 @@ const SidebarNav = styled.nav([
 const DesktopNav = styled.nav([
   tw`hidden lg:block`,
   {
-    a: tw`inline-block text-white text-lg py-3 px-4 mr-4 font-light hocus:(text-primary underline)`,
+    'a.nav-item': tw`inline-block text-white text-lg py-3 px-4 mr-4 font-light hocus:(text-primary underline)`,
     'a.active': tw`text-primary`,
   },
 ])
@@ -46,12 +46,17 @@ const Header = ({ menu, url }) => {
           <Logo />
           <DesktopNav>
             {primaryMenu.map(({ menuName, url }, i) => (
-              <Link key={i} href={url} activeClassName="active">
+              <Link
+                key={i}
+                href={url}
+                class="nav-item"
+                activeClassName="active"
+              >
                 {menuName}
               </Link>
             ))}
             {secondaryMenu.map(({ menuName, url }, i) => (
-              <Button key={i} as={Link} href={url} rounded={false} size="md">
+              <Button key={i} as={Link} href={url} rounded={false}>
                 {menuName}
               </Button>
             ))}
@@ -59,6 +64,7 @@ const Header = ({ menu, url }) => {
           <Button
             className={css(tw`lg:hidden text-xl px-0 w-10 h-10`)}
             onClick={onToggle}
+            aria-label="Vis meny"
           >
             <Icon icon={faBars} />
           </Button>

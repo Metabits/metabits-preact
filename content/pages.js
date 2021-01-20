@@ -4,24 +4,25 @@ const routes = {
   work: '/referanser',
   technologies: '/teknologier',
   contact: '/kontakt-oss',
+  jamstack: '/jamstack-og-serverless',
 }
 
 const pages = [
   {
     url: routes.home,
     title: 'Metabits - utvikling av nettsider og applikasjoner',
-    description: 'Noe kommer her',
+    description:
+      'Utvikling av raske, moderne nettsider med top ytelse, gjerne med integrasjoner mot netthandel, abonnement og mye mer',
     menuName: 'Hjem',
     hero: {
       image: 'content/images/pages/rocket.svg',
       imageAlt:
         'Rakett. Illustrasjon: vijay verma / https://vijayverma.co / The MIT License',
-      title:
-        'Utvikling, design, universelt utformet, ytelse, intuitiv grensesnitt, analyse',
+      title: 'Vi utvikler ekstremt  raske nettsider',
       subTitle:
-        'Veien er smal, farene mange, men stien til den perfekte nettsiden er innenfor rekkevidde!',
-      primaryLink: routes.services,
-      primaryLinkName: 'Fortell mer',
+        'Brukervennlighet, synlighet i søkemotorer, og perfekt tilpasset mobil er en selvfølge!',
+      primaryLink: routes.work,
+      primaryLinkName: 'Se referanser',
       secondaryLink: routes.contact,
       secondaryLinkName: 'Ta kontakt',
     },
@@ -34,7 +35,7 @@ const pages = [
         title:
           'De fleste nettsider er oppblåste og bygd i rammeverk som aldri lar deg nå maks ytelse',
         link: routes.services,
-        linkText: 'Les om serverless og JAMStack',
+        linkText: 'Les om raske nettsider',
       },
       {
         image: 'content/images/pages/ux-screen.svg',
@@ -42,27 +43,65 @@ const pages = [
           'Ux skjermer.. Illustrasjon: vijay verma / https://vijayverma.co / The MIT License',
         preTitle: 'En utfordring:',
         title:
-          'Hvordan lever top ytelse til et globalt publikum, uten lorem ipsum deja vu?',
-        link: routes.services,
+          'Hvordan levere topp ytelse til et globalt publikum på budsjett som ikke koster skjorta',
+        link: routes.jamstack,
         linkText: 'Les om serverless og JAMStack',
       },
     ],
   },
   {
-    url: routes.services,
-    title: 'Utvikling av nettsider',
-    menuName: 'Utvikling',
-    subTitle: 'Here comes content for about page',
-    image: 'content/images/pages/app-development.svg',
+    url: routes.jamstack,
+    title: 'JAMStack og serverless',
+    description:
+      'JAMStack og serverless - hvordan levere topp ytelse til et globalt publikum på budsjett som ikke koster skjorta',
+    subTitle: 'Topp ytelse til et globalt publikum',
+    image: 'content/images/pages/fish.svg',
     imageAlt:
       'Utvikling. Illustrasjon: vijay verma / https://vijayverma.co / The MIT License',
-    content: `Noe mer kommer her`,
+    content: `## Hva er JAMStack?
+
+JAMStack er en motode for hvordan nettsider utvikles og distribueres som gjør dem raskere, sikrere og enklere å skalere.
+
+Tradisjonelle nettsider er avhenging av mange ulike cache-teknikker for å beskytte server og database mot overbelastning. JAMStack løser dette ut av boksen fordi hele nettsiden forhåndsgenereres til statiske filer, noe som vil gjøre at sider kan leveres lynraskt.
+
+## Serverless hosting
+
+JAMStack nettsider egner seg godt for serverless hosting, siden sluttproduktet er enkle statiske filer. Via slike tjenester distribueres globalt, uten noen sentralisert som kan påvirke ytelsen.`,
+  },
+  {
+    url: routes.services,
+    title: 'Utvikling av nettsider',
+    description:
+      'Utvikling av raske, moderne nettsider med fokus på ytelse, brukervennlighet og synlighet i søkemotorer',
+    menuName: 'Utvikling',
+    subTitle: 'Lynraske moderne nettsider som fungerer perfekt på mobil',
+    image: 'content/images/pages/ux-screen.svg',
+    imageAlt:
+      'Utvikling. Illustrasjon: vijay verma / https://vijayverma.co / The MIT License',
+    content: `Vi utvikler raske, moderne nettsider som er tilpasset deres behov og ønsker, og som er enkle å vedlikeholde.
+
+  ## Utvikling av raskere nettsider
+
+  Noen elsker raske biler, vi elsker raske nettsider. Teknisk handler dette om moderne teknikker for å sende akkurat det man trenger, for vise siden man først kommer til, men det handler også om en strategi i forhold til hvordan innhold og utforming av nettsidene løses både med tanke på ytelse og salgsbudskap.
+
+  Mange nettsider har en andel på 80% av trafikk fra mobil, allikevel ser vi at mange eiere fortsatt fokuserer mest på hvordan sidene laster inn og ser ut på større skjermer.
+
+  ## Utvikling av brukervennlige nettsider
+
+  Brukervennlighet handler om forståelse. Man må forstå produktet, man må forstå kunden og man må forstå kjøpsprosessen. Gjennom dette kan man utforme et effektivt design som formidler og øker lønnsomheten.
+
+  ## Utvikling av synlige nettsider
+
+  For de fleste nettsider vil trafikk fra søkemotorer utgjøre en viktigst del av innkommende trafikk. Derfor er det spesielt viktig at HTML-koden på nettstedet er utformet riktig.`,
   },
   {
     url: routes.work,
     title: 'Referanser',
+    description:
+      'Se eksempler på jobber her - utvikling av raske, moderne nettsider',
     menuName: 'Referanser',
-    subTitle: 'Her er noen av produktene vi har vært med å jobbe med',
+    subTitle:
+      'Et utvalg at noen av våre kundecaser innen utvikling og design av nettsider',
     contentItems: [
       {
         title: 'Moderne nettsider for Navnelapper.no',
@@ -120,8 +159,9 @@ const pages = [
     subTitle:
       'Våre kompetanseområder innen utvikling og design av nettløsninger',
     menuName: 'Teknologier',
-    description: 'Hvilke ',
-    image: 'content/images/pages/tools.svg',
+    description:
+      'Hvilke verktøy jobber vi med - utvikling av raske, moderne nettsider',
+    image: 'content/images/pages/programming.svg',
     imageAlt:
       'Verktøy. Illustrasjon: vijay verma / https://vijayverma.co / The MIT License',
     content: `Generelt jobber vi med et riktig og allsidig utvalg innen mange forskjellige områder rundt leveranse av nettsider og applikasjoner.
@@ -153,7 +193,7 @@ Wordpress har også en REST api som gjør at den kan integreres modern en modern
     menuName: 'Kontakt oss',
     description:
       'Metabits AS ble stiftet i 2011 har har siden den gang jobbet både som underleverandør innen utvikling av nettsider og applikasjoner og som total-leverandør av fullstendige prosjekter.',
-    image: 'content/images/pages/bike.svg',
+    image: 'content/images/pages/cafe.svg',
     imageAlt:
       'Kul sykkel. Illustrasjon: vijay verma / https://vijayverma.co / The MIT License',
     isButton: true,

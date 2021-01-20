@@ -1,5 +1,5 @@
 import { h } from 'preact'
-import tw, { styled } from 'twin.macro'
+import tw, { styled } from 'twin.macro' // GlobalStyles
 import { createGlobalStyles } from 'goober/global'
 
 import globalStyles from 'helpers/globalStyles'

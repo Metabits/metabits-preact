@@ -46,17 +46,26 @@ async function getContent() {
         isButton,
       })),
   }
-  return pages.map(({ url, title, description, ...page }) => ({
-    url,
-    title,
-    description,
-    seo: {
+  return pages.map(({ url, title, description, ...page }) => {
+    const seoExtra =
+      page.image && page.image.src
+        ? {
+            image: page.image.src,
+          }
+        : {}
+    return {
+      url,
       title,
       description,
-    },
-    layout,
-    ...page,
-  }))
+      seo: {
+        title,
+        description,
+        ...seoExtra,
+      },
+      layout,
+      ...page,
+    }
+  })
 }
 
 module.exports = getContent
