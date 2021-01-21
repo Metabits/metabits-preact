@@ -7,7 +7,7 @@ import useInView from 'hooks/use-inview'
 const Container = styled('div')([
   tw`w-full bg-cover rounded relative`,
   {
-    'img, .placeholder': tw`w-full h-full absolute top-0 left-0 bg-cover rounded`,
+    'img, .placeholder': tw`w-full h-full absolute top-0 left-0 rounded`,
   },
 ])
 
@@ -18,15 +18,14 @@ const containerStylesAsync = css({
   },
   '& .placeholder': {
     filter: 'blur(2px)',
-    transition: 'opacity 0.4s ease, filter 0.5s ease',
+    transition: 'opacity 0.5s ease',
     opacity: '1',
-    'transition-delay': '0.3s',
     'z-index': '0',
+    'background-size': '100%',
   },
   '& .main': {
     opacity: '0',
     transition: 'opacity 0.5s ease',
-    'transition-delay': '0.3s',
     'z-index': '1',
   },
   '&.lazy-isloaded .main': {
@@ -36,6 +35,8 @@ const containerStylesAsync = css({
     opacity: '0',
   },
 })
+
+const cache = {}
 
 const Image = ({
   height,
@@ -48,11 +49,13 @@ const Image = ({
   sizes,
   ...props
 }) => {
-  const isLazy = loading === 'lazy'
+  const inCache = !!cache[props.src]
+  const isLazy = inCache ? false : loading === 'lazy'
   const [ref, inView] = useInView(!isLazy)
   const [isLoaded, setIsLoaded] = useState(!isLazy)
   const ratio = (height / width) * 100
   const handleImgLoaded = () => {
+    cache[props.src] = true
     setIsLoaded(true)
   }
   const show = isLazy ? inView : true
@@ -75,7 +78,7 @@ const Image = ({
         <div
           className="placeholder"
           style={{
-            'background-image': `url(${placeholder})`
+            'background-image': `url(${placeholder})`,
           }}
         />
       )}

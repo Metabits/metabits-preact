@@ -27,7 +27,7 @@ const Page = (props) => {
           </hgroup>
           {image && (
             <div className={css(tw`max-w-2xl mx-auto my-8`)}>
-              <Image {...image} alt={imageAlt} loading="eager" />
+              <Image {...image} alt={imageAlt} loading="lazy" />
             </div>
           )}
           {content && (

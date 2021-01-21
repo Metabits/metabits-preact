@@ -15,6 +15,8 @@ async function fetcher(url) {
   return json
 }
 
+const cache = {}
+
 function usePrerenderData(props, doAutomaticFetch = true) {
   let value
   const [state, setState] = useState({
@@ -33,6 +35,7 @@ function usePrerenderData(props, doAutomaticFetch = true) {
     })
     try {
       const [json] = await Promise.all([fetcher(props.url), sleep(300)])
+      cache[props.url] = json
       setState({
         value: json,
         isLoading: false,
@@ -49,6 +52,9 @@ function usePrerenderData(props, doAutomaticFetch = true) {
 
   if (contextValue.CLI_DATA && contextValue.CLI_DATA.preRenderData) {
     value = contextValue.CLI_DATA.preRenderData
+  }
+  if (cache[props.url]) {
+    value = cache[props.url]
   }
 
   const data = getPrerenderdata(state.value || value, props)
