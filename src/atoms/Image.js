@@ -7,7 +7,7 @@ import useInView from 'hooks/use-inview'
 const Container = styled('div')([
   tw`w-full bg-cover rounded relative`,
   {
-    'img, .placeholder': tw`w-full h-full absolute top-0 left-0 rounded`,
+    'img, .placeholder': tw`w-full h-full absolute top-0 left-0 bg-cover rounded`,
   },
 ])
 
@@ -21,7 +21,6 @@ const containerStylesAsync = css({
     transition: 'opacity 0.5s ease',
     opacity: '1',
     'z-index': '0',
-    'background-size': '100%',
   },
   '& .main': {
     opacity: '0',
@@ -60,7 +59,6 @@ const Image = ({
   }
   const show = isLazy ? inView : true
   const lazyClassName = isLoaded ? 'lazy-isloaded' : 'lazy-notloaded'
-
   return (
     <Container
       className={`${className} ${isLazy ? containerStylesAsync : ''} ${

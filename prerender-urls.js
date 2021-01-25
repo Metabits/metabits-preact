@@ -1,10 +1,7 @@
 const { join } = require('path')
 
 const content = require('./content/pages')
-const ImageHandler = require('./content/ImageHandler')
-
-const publicPath = '/assets/images'
-const output = join(__dirname, `src${publicPath}`)
+const ImageHandler = require('responsiv-image-handler')
 
 async function optimizePages(pages, handler) {
   for await (const page of pages) {
@@ -29,9 +26,10 @@ async function optimizePages(pages, handler) {
 }
 
 async function getContent() {
+  const publicPath = '/assets/images'
   const handler = new ImageHandler({
-    output,
     publicPath,
+    outputPath: join(__dirname, `src${publicPath}`),
   })
   await handler.clear()
   console.time('Optimize images')
