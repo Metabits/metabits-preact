@@ -1,6 +1,6 @@
 import { h } from 'preact'
 import { Router } from 'preact-router'
-import { Provider } from 'helpers/prerender-data-provider'
+import { Provider } from '@preact/prerender-data-provider'
 import { useState, useCallback } from 'preact/hooks'
 
 import Layout from 'components/Layout'

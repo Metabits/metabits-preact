@@ -18,13 +18,13 @@ const Content = styled.main([
   },
 ])
 
-const App = ({ children, layout: { menu }, url }) => (
+const App = ({ children, layout, url }) => (
   <Container>
     <GlobalStyles />
     <GlobalsExtra />
-    <Header menu={menu} url={url} />
+    <Header menu={layout?.menu} url={url} />
     <Content>{children}</Content>
-    <Footer menu={menu} />
+    <Footer menu={layout?.menu} />
   </Container>
 )
 

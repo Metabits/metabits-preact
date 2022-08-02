@@ -44,7 +44,7 @@ async function getContent() {
         isButton,
       })),
   }
-  return pages.map(({ url, title, description, ...page }) => {
+  const data = pages.map(({ url, title, description, ...page }) => {
     const seoExtra =
       page.image && page.image.src
         ? {
@@ -64,6 +64,7 @@ async function getContent() {
       ...page,
     }
   })
+  return data
 }
 
 module.exports = getContent

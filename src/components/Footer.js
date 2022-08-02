@@ -21,11 +21,12 @@ const Footer = ({ menu }) => {
     <Container>
       <Wrapper>
         <Nav>
-          {menu.map(({ menuName, url }, i) => (
-            <Link key={i} href={url} activeClassName="active">
-              {menuName}
-            </Link>
-          ))}
+          {menu &&
+            menu.map(({ menuName, url }, i) => (
+              <Link key={i} href={url} activeClassName="active">
+                {menuName}
+              </Link>
+            ))}
         </Nav>
         <p>Metabits as © 2011 - {now.getFullYear()}</p>
       </Wrapper>

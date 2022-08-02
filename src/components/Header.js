@@ -27,8 +27,8 @@ const DesktopNav = styled.nav([
 ])
 
 const Header = ({ menu, url }) => {
-  const primaryMenu = menu.filter(({ isButton }) => !isButton)
-  const secondaryMenu = menu.filter(({ isButton }) => isButton)
+  const primaryMenu = menu?.filter(({ isButton }) => !isButton)
+  const secondaryMenu = menu?.filter(({ isButton }) => isButton)
   const [visible, setVisible] = useState(false)
   const onToggle = () => setVisible(!visible)
   const refUrl = useRef(url)
@@ -45,21 +45,23 @@ const Header = ({ menu, url }) => {
         <HeaderInner>
           <Logo />
           <DesktopNav>
-            {primaryMenu.map(({ menuName, url }, i) => (
-              <Link
-                key={i}
-                href={url}
-                class="nav-item"
-                activeClassName="active"
-              >
-                {menuName}
-              </Link>
-            ))}
-            {secondaryMenu.map(({ menuName, url }, i) => (
-              <Button key={i} as={Link} href={url} rounded={false}>
-                {menuName}
-              </Button>
-            ))}
+            {primaryMenu &&
+              primaryMenu.map(({ menuName, url }, i) => (
+                <Link
+                  key={i}
+                  href={url}
+                  class="nav-item"
+                  activeClassName="active"
+                >
+                  {menuName}
+                </Link>
+              ))}
+            {secondaryMenu &&
+              secondaryMenu.map(({ menuName, url }, i) => (
+                <Button key={i} as={Link} href={url} rounded={false}>
+                  {menuName}
+                </Button>
+              ))}
           </DesktopNav>
           <Button
             className={css(tw`lg:hidden text-xl px-0 w-10 h-10`)}
@@ -76,11 +78,12 @@ const Header = ({ menu, url }) => {
         className={css(tw`lg:hidden`)}
       >
         <SidebarNav>
-          {menu.map(({ menuName, url }, i) => (
-            <Link key={i} href={url} activeClassName="active">
-              {menuName}
-            </Link>
-          ))}
+          {menu &&
+            menu.map(({ menuName, url }, i) => (
+              <Link key={i} href={url} activeClassName="active">
+                {menuName}
+              </Link>
+            ))}
         </SidebarNav>
       </Sidebar>
     </Container>

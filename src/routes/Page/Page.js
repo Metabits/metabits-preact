@@ -1,6 +1,6 @@
 import { h } from 'preact'
 import tw, { css } from 'twin.macro'
-import { usePrerenderData } from 'helpers/prerender-data-provider'
+import { usePrerenderData } from '@preact/prerender-data-provider'
 
 import PageWrapper from 'components/PageWrapper'
 import Title from 'atoms/Title'

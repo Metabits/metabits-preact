@@ -18,7 +18,7 @@ const pages = [
       image: 'content/images/pages/rocket.svg',
       imageAlt:
         'Rakett. Illustrasjon: vijay verma / https://vijayverma.co / The MIT License',
-      title: 'Vi utvikler ekstremt  raske nettsider',
+      title: 'Vi utvikler ekstremt raske nettsider',
       subTitle:
         'Brukervennlighet, synlighet i søkemotorer, og perfekt tilpasset mobil er en selvfølge!',
       primaryLink: routes.work,

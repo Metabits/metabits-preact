@@ -6,3 +6,6 @@ node_modules
 generated
 src/assets/images
 size-plugin.json
+
+# Local Netlify folder
+.netlify
